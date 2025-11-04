@@ -1,13 +1,18 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/auth/LoginPage";
 import HomePage from "./pages/other/HomePage";
+import PrivateRoutes from "./route/ProtectedRoute";
 
 const App = () => {
     return (
-        <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/about" element={<HomePage />} />
-        </Routes>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<PrivateRoutes />}>
+                    <Route path="/" element={<HomePage />} />
+                </Route>
+                <Route path="/login" element={<LoginPage />} />
+            </Routes>
+        </BrowserRouter>
     );
 };
 

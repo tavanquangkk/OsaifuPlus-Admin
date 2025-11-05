@@ -2,16 +2,22 @@ import { Button, Checkbox, Form, Input } from "antd";
 import "../../assets/styles/App.css";
 import { login } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 const LoginPage = () => {
-    console.log(import.meta.env.VITE_API_URL);
+    const { setUser } = useContext(AuthContext);
     let navigate = useNavigate();
 
     const onFinish = async (value) => {
         const { email, password } = value;
-        console.log(email, password);
         const response = await login(email, password);
-        console.log(">>>Check response login", response);
+        if (response) {
+            const userData = response?.data?.data;
+            setUser(userData);
+            localStorage.setItem("user", JSON.stringify(userData));
+        }
+
         navigate("/");
     };
     return (

@@ -4,6 +4,8 @@ import HomePage from "./pages/other/HomePage";
 import PrivateRoutes from "./route/ProtectedRoute";
 import { LayoutPage } from "./components/layout/LayoutPage";
 import { HelloPage } from "./pages/HelloPage";
+import { UserPage } from "./pages/other/UserPage";
+import { NotFoundErrorPage } from "./pages/utils/NotFoundErrorPage";
 
 const App = () => {
     return (
@@ -12,8 +14,9 @@ const App = () => {
                 <Route element={<PrivateRoutes />}>
                     <Route path="/" element={<LayoutPage />}>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/hello" element={<HelloPage />} />
+                        <Route path="/users" element={<UserPage />} />
                     </Route>
+                    <Route path="*" element={<NotFoundErrorPage />} />
                 </Route>
                 <Route path="/login" element={<LoginPage />} />
             </Routes>

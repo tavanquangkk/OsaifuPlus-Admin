@@ -9,13 +9,16 @@ import {
 import { Breadcrumb, Layout, Menu } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+
 export const LayoutPage = () => {
+    const navigate = useNavigate();
+    const [key, setKey] = useState("");
     const iconList = [<UserOutlined />, <UnorderedListOutlined />, <CommentOutlined />];
-    const items2 = ["User", "Category", "FeedBack"].map((item, index) => {
+    const items2 = ["Users", "Categories", "FeedBacks"].map((item, index) => {
         console.log(">>>Check index", index);
         return {
             key: `${item}`,
@@ -23,15 +26,22 @@ export const LayoutPage = () => {
             label: ` ${item}`,
         };
     });
+
+    const menuClick = (params) => {
+        const path = params?.key;
+        setKey(params?.key);
+        console.log(">>>Check menu clicked", params.key);
+        navigate(`/${path}`);
+    };
     return (
         <Layout style={{ height: "100vh", paddingBottom: "30px" }}>
             <Header />
             <Layout>
                 <Sider width={200} className="sider-menu">
                     <Menu
+                        selectedKeys={[key]}
                         mode="inline"
-                        defaultSelectedKeys={["1"]}
-                        defaultOpenKeys={["sub1"]}
+                        onClick={menuClick}
                         style={{ height: "100%", borderInlineEnd: 0 }}
                         items={items2}
                     />

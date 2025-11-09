@@ -19,7 +19,6 @@ export const LayoutPage = () => {
     const [key, setKey] = useState("");
     const iconList = [<UserOutlined />, <UnorderedListOutlined />, <CommentOutlined />];
     const items2 = ["Users", "Categories", "FeedBacks"].map((item, index) => {
-        console.log(">>>Check index", index);
         return {
             key: `${item}`,
             icon: iconList[index],
@@ -30,7 +29,6 @@ export const LayoutPage = () => {
     const menuClick = (params) => {
         const path = params?.key;
         setKey(params?.key);
-        console.log(">>>Check menu clicked", params.key);
         navigate(`/${path}`);
     };
     return (

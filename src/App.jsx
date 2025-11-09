@@ -6,6 +6,7 @@ import { LayoutPage } from "./components/layout/LayoutPage";
 import { HelloPage } from "./pages/HelloPage";
 import { UserPage } from "./pages/other/UserPage";
 import { NotFoundErrorPage } from "./pages/utils/NotFoundErrorPage";
+import { CategoryPage } from "./pages/other/CategoryPage";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Route path="/" element={<LayoutPage />}>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/users" element={<UserPage />} />
+                        <Route path="/categories" element={<CategoryPage />} />
                     </Route>
                     <Route path="*" element={<NotFoundErrorPage />} />
                 </Route>

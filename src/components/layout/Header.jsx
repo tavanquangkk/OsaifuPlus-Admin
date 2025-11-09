@@ -9,11 +9,7 @@ export const Header = () => {
             <Link to={"/"}>
                 <HomeOutlined style={{ fontSize: "30px" }} />
             </Link>
-            <img
-                src="https://images.unsplash.com/photo-1761839257664-ecba169506c1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3869"
-                alt=""
-                width={50}
-            />
+            <h1>Osaifu Plus</h1>
             <Link>
                 <LogoutOutlined style={{ fontSize: "30px" }} spin={true} />
             </Link>

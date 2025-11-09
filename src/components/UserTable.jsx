@@ -1,13 +1,22 @@
-import { EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Space, Table, Tag } from "antd";
 
-export const UserTable = () => {
+export const UserTable = (props) => {
+    const { setUserData, setOpenView, setOpenUpdate } = props;
     const columns = [
         {
             title: "Id",
             dataIndex: "id",
             key: "id",
-            render: (text) => <a>{text}</a>,
+            render: (text, record) => (
+                <a
+                    onClick={() => {
+                        setOpenView(true);
+                        setUserData(record);
+                    }}>
+                    {text}
+                </a>
+            ),
         },
         {
             title: "Name",
@@ -27,12 +36,18 @@ export const UserTable = () => {
         {
             title: "Action",
             key: "action",
-            render: (_, record) => (
+            render: (record) => (
                 <Space size="middle">
-                    <EditOutlined style={{ color: "orange" }} label="Edit" />
-                    <Button>Delete</Button>
-                    <a>Invite {record.name}</a>
-                    <a>Delete</a>
+                    <Button
+                        onClick={() => {
+                            setOpenUpdate(true);
+                            setUserData(record);
+                        }}>
+                        <EditOutlined style={{ color: "orange" }} label="Edit" />
+                    </Button>
+                    <Button>
+                        <DeleteOutlined style={{ color: "red" }} label="Delete" />
+                    </Button>
                 </Space>
             ),
         },
@@ -41,23 +56,14 @@ export const UserTable = () => {
         {
             id: "1",
             name: "John Brown",
-            age: 32,
-            address: "New York No. 1 Lake Park",
-            tags: ["nice", "developer"],
+            email: "ad@gmail.com",
+            role: "ADMIN",
         },
         {
             id: "2",
-            name: "Jim Green",
-            age: 42,
-            address: "London No. 1 Lake Park",
-            tags: ["loser"],
-        },
-        {
-            id: "3",
-            name: "Joe Black",
-            age: 32,
-            address: "Sydney No. 1 Lake Park",
-            tags: ["cool", "teacher"],
+            name: "John Brown",
+            email: "b@gmail.com",
+            role: "User",
         },
     ];
 
